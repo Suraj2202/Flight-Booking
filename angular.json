@@ -66,6 +66,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "option": {
+            "port": 80
+          },
           "configurations": {
             "production": {
               "browserTarget": "Filght-Booking-System:build:production"

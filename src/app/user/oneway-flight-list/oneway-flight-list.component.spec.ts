@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoginSignUpComponent } from './login-sign-up.component';
+import { OnewayFlightListComponent } from './oneway-flight-list.component';
 
-describe('LoginSignUpComponent', () => {
-  let component: LoginSignUpComponent;
-  let fixture: ComponentFixture<LoginSignUpComponent>;
+describe('OnewayFlightListComponent', () => {
+  let component: OnewayFlightListComponent;
+  let fixture: ComponentFixture<OnewayFlightListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginSignUpComponent ]
+      declarations: [ OnewayFlightListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginSignUpComponent);
+    fixture = TestBed.createComponent(OnewayFlightListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

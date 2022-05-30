@@ -1,0 +1,39 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Flight Booking</h1>
+        <p class="lead">Manage all operations of Flight Booking from single DashBoard</p>
+    </div>
+</div>
+<div>
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+<!--Show Error Message-->
+<div *ngIf="errormsg" class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{errormsg}}</strong>        
+  </div>
+            <form [formGroup]="loginForm" class="col-12">
+                <div class="col-md-4 mt-2">
+                    <input type="text" class="form-control" formControlName="userName" placeholder="User Name">
+                    <div class="form-text text-danger" *ngIf="userName.errors?.['required'] && (userName.touched || userName.dirty)">
+                        Please Enter Full Name
+                    </div>
+                </div>
+                <div class="col-md-4 mt-2">
+                    <input type="password" class="form-control" formControlName="password" placeholder="Password">
+                    <div class="form-text text-danger" *ngIf="password.errors?.['required'] && (password.touched || password.dirty)">
+                        Please Enter Password
+                    </div>
+                
+                </div>
+                <div class="d-flex flex-column mb-3">
+                    <div class="col-md-4 mt-2">
+                        <button class="btn btn-singin btn-md" (click)="Login()">Sign In</button>
+                    </div>
+                    <div class="col-md-4 mt-2">
+                        <a href="signup" class="btn btn-register btn-md">Register</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

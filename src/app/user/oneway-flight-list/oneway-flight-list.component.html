@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="search-flight">Search Flights</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+                <a class="nav-link" routerLink="/manage-ticket">Manage Tickets</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/search-flight">Search Flight</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/pnr-search">Check PNR Status</a>
+            </li>
+        </ul>
+        <a href = "login" class="navbar-text">
+            LogOut
+        </a>
+    </div>
+</nav>
+
+
+<div class="container mt-3">
+    <!--Show Error Message-->
+    <div *ngIf="errormsg" class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{errormsg}}</strong>        
+      </div>
+    <!--Show Success Message-->
+    <div *ngIf="successMsg" class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{successMsg}}</strong>        
+      </div>
+
+    
+<div class="container mt-3">
+    <table class="table table-boarderd">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Flight Number</th>
+            <th scope="col">Flight Name</th>
+            <th scope="col">Departure Time</th>
+            <th scope="col">Departure Location</th>
+            <th scope="col">Arrival Location</th>
+            <th scope="col">Arrival Time</th>
+            <th scope="col">Fare</th>
+            <th scope="col">Procees with Book</th>        
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let usr of readUser">
+            <td>{{usr.flightNumber}}</td>
+            <td>{{usr.flightName}}</td>
+            <td>{{usr.startDateTime}}</td>            
+            <td>{{usr.from}}</td>            
+            <td>{{usr.to}}</td>
+            <td>{{usr.endDateTime}}</td>
+            <td>{{usr.baseFare}}</td>
+            <td><a [routerLink]="['/passanger-details',usr.entryId]" class="btn btn-success">Book</a></td>
+          </tr>
+        </tbody>
+      </table>
+      
+</div>
+
+</div>

@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="admin-dashboard">Admin</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/airline-list">Manage Airline</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/flight-list">Manage Flight</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/schedule-list">Manage Schedule</a>
+        </li>        
+        <li class="nav-item active">
+            <a class="nav-link" routerLink="/discount-list">Manage Discount</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" style="color:orange;" routerLink="/operation-discount">Add New Discount</a>
+        </li>
+      </ul>
+      <a href = "login" class="navbar-text">
+        LogOut
+    </a>
+    </div>
+  </nav>
+
+  <div class="container mt-3">
+    <table class="table table-boarderd">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Coupon Code</th>
+            <th scope="col">Coupon Value</th>
+            <th scope="col">Minimum Fare</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th> 
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let usr of readUser">
+            <td>{{usr.couponCode}}</td>
+            <td>{{usr.value}}</td>
+            <td>{{usr.minimumAmount}}</td>
+            <td><a [routerLink]="['/operation-discount',usr.couponCode]" class="btn btn-success">Edit</a></td>
+            <td><button class="btn btn-danger" (click)="deleteCoupon(usr.couponCode)">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+      
+</div>

@@ -1,0 +1,110 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="search-flight">Search Flights</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+                <a class="nav-link" routerLink="/manage-ticket">Manage Tickets</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/search-flight">Search Flight</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/pnr-search">Check PNR Status</a>
+            </li>
+        </ul>
+        <a href = "login" class="navbar-text">
+            LogOut
+        </a>
+    </div>
+</nav>
+
+
+<div class="container mt-3">
+    <!--Show Error Message-->
+    <div *ngIf="errormsg" class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{errormsg}}</strong>
+    </div>
+    <!--Show Success Message-->
+    <div *ngIf="successMsg" class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{successMsg}}</strong>
+    </div>
+
+    <form [formGroup]="bookFlight" class="col-12">
+        <div class="container mt-3">
+
+            <h2>One Way</h2>
+            <div class="form-text text-danger" *ngIf="oneway.errors?.['required'] && (oneway.touched || oneway.dirty || oneway.untouched)">
+                Please Select any one from One-Way
+            </div>
+            <table class="table table-boarderd mt-3">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Flight Number</th>
+                        <th scope="col">Flight Name</th>
+                        <th scope="col">Departure Time</th>
+                        <th scope="col">Departure Location</th>
+                        <th scope="col">Arrival Location</th>
+                        <th scope="col">Arrival Time</th>
+                        <th scope="col">Fare</th>
+                        <th scope="col">Procees with Book</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let usr of readOneWay">
+                        <td>{{usr.flightNumber}}</td>
+                        <td>{{usr.flightName}}</td>
+                        <td>{{usr.startDateTime}}</td>
+                        <td>{{usr.from}}</td>
+                        <td>{{usr.to}}</td>
+                        <td>{{usr.endDateTime}}</td>
+                        <td>{{usr.baseFare}}</td>
+                        <td><input type="radio" value={{usr.entryId}} formControlName="oneway"><span> Select </span></td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <h2>Round Trip</h2>
+            
+            <div class="form-text text-danger" *ngIf="roundway.errors?.['required'] && (roundway.touched || roundway.dirty || roundway.untouched)">
+                Please Select any one from Round-Way
+            </div>
+            <table class="table table-boarderd mt-3">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Flight Number</th>
+                        <th scope="col">Flight Name</th>
+                        <th scope="col">Departure Time</th>
+                        <th scope="col">Departure Location</th>
+                        <th scope="col">Arrival Time</th>
+                        <th scope="col">Fare</th>
+                        <th scope="col">Procees with Book</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let usrx of readRound">
+                        <td>{{usrx.flightNumber}}</td>
+                        <td>{{usrx.flightName}}</td>
+                        <td>{{usrx.startDateTime}}</td>
+                        <td>{{usrx.from}}</td>
+                        <td>{{usrx.endDateTime}}</td>
+                        <td>{{usrx.baseFare}}</td>
+                        <td><input type="radio" value={{usrx.entryId}} formControlName="roundway"><span> Select </span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="container">
+                <div class="row">
+                  <div class="col text-center">
+                    <button class="btn btn-success" (click)="bookFlights()">Book Flight</button>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,137 @@
+<body>
+  
+
+    <div id="booking" class="section">
+
+        <div class="section-center">
+            <div class="container">
+                <div class="row">
+                    <div class="booking-form">
+                        <div class="form-header">
+                            <h1>Book Your Flight</h1>
+                        </div>
+                        <form [formGroup]="searchFlight">
+
+
+                            <div class="form-group">
+                                
+                                <div class="form-checkbox">
+                                    <input class="form-control" formControlName="userName" type="text">
+                                    <label for="roundtrip">
+                                        <input type="radio" value = "round" id="roundtrip" formControlName="flighttype">
+                                        <span></span>Roundtrip
+                                    </label>
+                                    <label for="one-way">
+                                        <input type="radio" value="one" id="one-way" formControlName="flighttype">
+                                        <span></span>One way
+                                    </label>
+                                </div>
+                                <div class="form-text text-danger" *ngIf="flighttype.errors?.['required'] && (flighttype.touched || flighttype.dirty)">
+                                   * Please Select any One
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" formControlName="from" type="text">
+                                <span class="form-label">Flying from</span>
+                                
+                                <div class="form-text text-danger" *ngIf="from.errors?.['required'] && (from.touched || from.dirty)">
+                                    * Please Enter Departure
+                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" formControlName="to" type="text">
+                                <span class="form-label">Flying to</span>
+                                
+                                <div class="form-text text-danger" *ngIf="to.errors?.['required'] && (to.touched || to.dirty)">
+                                    * Please Enter Arrival
+                                 </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input class="form-control" min="{{minDate}}" formControlName="departStartDateTime" type="date">
+                                        <span class="form-label">Start Date Time</span>
+                                        
+                                <div class="form-text text-danger" *ngIf="departStartDateTime.errors?.['required'] && (departStartDateTime.touched || departStartDateTime.dirty)">
+                                    * Please Select Date
+                                 </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group" *ngIf="flighttype.value=='round'">
+                                        <input class="form-control" min="{{minDate}}" value={{minDate}} formControlName="returnStartDateTime" type="date">
+                                        <span class="form-label">End Date Time</span>
+                                        
+                                <div class="form-text text-danger" *ngIf="returnStartDateTime.errors?.['required'] && (returnStartDateTime.touched || returnStartDateTime.dirty)">
+                                    * Please Select Date
+                                 </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <select class="form-control" formControlName="classOption">
+                                            <option>Economy class</option>
+                                            <option>Business class</option>
+                                        </select>
+                                        <span class="select-arrow"></span>
+                                        <span class="form-label">Travel class</span>
+                                                
+                                <div class="form-text text-danger" *ngIf="classOption.errors?.['required'] && (classOption.touched || classOption.dirty)">
+                                    * Please Select Class
+                                 </div>
+                                    </div>
+                                
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <select class="form-control" formControlName="passanger">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                        </select>
+                                        <span class="select-arrow"></span>
+                                        <span class="form-label">Passanger</span>
+                                               
+                                <div class="form-text text-danger" *ngIf="passanger.errors?.['required'] && (passanger.touched || passanger.dirty)">
+                                    * Please Select Passanger
+                                 </div>
+                                    </div>
+                                   
+                                </div>
+
+                                <div class="form-btn">
+                                    <button class="submit-btn" (click)="searchFlights()">Search Flights</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script>
+        $('.form-control').each(function () {
+            floatedLabel($(this));
+        });
+
+        $('.form-control').on('input', function () {
+            floatedLabel($(this));
+        });
+
+        function floatedLabel(input) {
+            var $field = input.closest('.form-group');
+            if (input.val()) {
+                $field.addClass('input-not-empty');
+            } else {
+                $field.removeClass('input-not-empty');
+            }
+        }
+    </script>
+
+</body>

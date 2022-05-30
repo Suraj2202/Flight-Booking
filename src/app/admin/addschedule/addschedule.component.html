@@ -1,0 +1,69 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="admin-dashboard">Admin</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/airline-list">Manage Airline</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/flight-list">Manage Flight</a>
+            </li>
+            <li class="nav-item  active">
+                <a class="nav-link" routerLink="/schedule-list">Manage Schedule</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/discount-list">Manage Discount</a>
+            </li>
+        </ul>
+        <a href = "login" class="navbar-text">
+            LogOut
+        </a>
+    </div>
+</nav>
+
+<div class="container mt-3">
+    <!--Show Error Message-->
+    <div *ngIf="errormsg" class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{errormsg}}</strong>        
+      </div>
+<!--Show Success Message-->
+<div *ngIf="successMsg" class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{successMsg}}</strong>        
+  </div>
+
+    <form [formGroup]="airlineForm">
+        <div class="col-md-4 mt-2">
+            <input type="text" class="form-control" formControlName="flightNumber" placeholder="Flight Number">
+        </div>
+        <div class="col-md-4 mt-2">
+            <input type="text" class="form-control" formControlName="from" placeholder="From">
+        </div>
+        <div class="col-md-4 mt-2">
+            <input type="text" class="form-control" formControlName="to" placeholder="To">
+        </div>
+        <div class="col-md-4 mt-2">
+
+            <input type="text" class="form-control" formControlName="startDateTime" placeholder="start Date Time">
+        </div>
+        <div class="col-md-4 mt-2">
+            <input type="text" class="form-control" formControlName="endDateTime" placeholder="endDateTime">
+        </div>
+        <div class="col-md-4 mt-2">
+            <input type="text" class="form-control" formControlName="schedule" placeholder="schedule">
+        </div>
+        <div class="col-md-4 mt-2">
+            <input type="text" class="form-control" formControlName="meal" placeholder="meal">
+        </div>        
+        <div class="col-md-4 mt-2" *ngIf="!getParam">
+            <button class="btn btn-primary btn-md" (click)="userSubmit()">Add Schedule</button>
+        </div>       
+        <div class="col-md-4 mt-2" *ngIf="getParam">
+            <button class="btn btn-primary btn-md" (click)="userUpdate()">Update Schedule</button>
+        </div>
+    </form>
+
+</div>

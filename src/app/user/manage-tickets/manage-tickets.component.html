@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="search-flight">Search Flights</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active" >
+                <a class="nav-link" routerLink="/manage-ticket">Manage Tickets</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/search-flight">Search Flight</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/pnr-search">Check PNR Status</a>
+            </li>
+        </ul>
+        <a href = "login" class="navbar-text">
+            LogOut
+        </a>
+    </div>
+</nav>
+
+
+<div class="container mt-3">
+    <table class="table table-boarderd">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">User Name</th>
+            <th scope="col">Email Id</th>
+            <th scope="col">PNR Number</th>
+            <th scope="col">Flight ID</th>
+            <th scope="col">Flight Name</th>
+            <th scope="col">Depart From</th>
+            <th scope="col">Departure Time</th>
+            <th scope="col">Arrival</th>
+            <th scope="col">Arrival Time</th>
+            <th scope="col">Fare</th> 
+            <th scope="col">Download</th>
+            <th scope="col">Cancel</th>           
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let usr of readUser">
+            <td>{{usr.userName}}</td>
+            <td>{{usr.emailId}}</td>
+            <td>{{usr.pnrnumber}}</td>            
+            <td>{{usr.flightIid}}</td>
+            <td>{{usr.flightName}}</td>
+            <td>{{usr.departureFrom}}</td>
+            <td>{{usr.departureTime}}</td>
+            <td>{{usr.arrivalTo}}</td>
+            <td>{{usr.arrivalTime}}</td>
+            <td>{{usr.fare}}</td>
+            <td><a [routerLink]="['/ticket-download',usr.pnrnumber]" class="btn btn-success">View Ticket</a></td>
+            <td><button *ngIf='usr.canCancel=="True" && usr.cancelStatus !="Canceled"' class="btn btn-danger" (click)="cancel(usr.uniqueBookingId)">Cancel</button>
+                <span *ngIf='usr.cancelStatus =="Canceled"'>Canceled</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+</div>

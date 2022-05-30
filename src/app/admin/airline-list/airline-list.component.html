@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="admin-dashboard">Admin</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/airline-list">Manage Airline</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/flight-list">Manage Flight</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/schedule-list">Manage Schedule</a>
+        </li>        
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/discount-list">Manage Discount</a>
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link" style="color:orange;" routerLink="/operation-airline">Add New Airline</a>
+        </li>
+      </ul>
+      <a href = "login" class="navbar-text">
+        LogOut
+    </a>
+    </div>
+  </nav>
+
+<div class="container mt-3">
+    <table class="table table-boarderd">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Flight Number</th>
+            <th scope="col">Contact Number</th>
+            <th scope="col">Contact Address</th>
+            <th scope="col">Instrument Used</th>
+            <th scope="col">Business Seats</th>
+            <th scope="col">Non-Business Seats</th>
+            <th scope="col">BaseFare</th>
+            <th scope="col">Business Rows</th>
+            <th scope="col">Non-Business Rows</th>
+            <th scope="col">Blocked</th> 
+            <th scope="col">Edit</th>
+            <th scope="col">Block</th>           
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let usr of readUser">
+            <td>{{usr.flightNumber}}</td>
+            <td>{{usr.contactNumber}}</td>
+            <td>{{usr.contactAddress}}</td>            
+            <td>{{usr.instrumentUsed}}</td>
+            <td>{{usr.businessSeats}}</td>
+            <td>{{usr.nonBusinessSeats}}</td>
+            <td>{{usr.baseFare}}</td>
+            <td>{{usr.businessRows}}</td>
+            <td>{{usr.nonBusinessRows}}</td>
+            <td>{{usr.blocked}}</td>
+            <td><a [routerLink]="['/operation-airline',usr.flightNumber]" class="btn btn-success">Edit</a></td>
+            <td><button *ngIf='usr.blocked!="True"' class="btn btn-danger" (click)="blockAirline(usr.flightNumber)">Block</button></td>
+          </tr>
+        </tbody>
+      </table>
+      
+</div>
